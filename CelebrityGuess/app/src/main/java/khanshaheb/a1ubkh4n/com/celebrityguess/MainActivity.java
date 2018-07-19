@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
                     char current = (char) data;
 
-                    result += result;
+                    result += current;
 
                     data = inputStreamReader.read();
                 }
@@ -74,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void celebChosen(View view) {
+
+        Log.i("Button:", "Tapped");
 
 
     }
