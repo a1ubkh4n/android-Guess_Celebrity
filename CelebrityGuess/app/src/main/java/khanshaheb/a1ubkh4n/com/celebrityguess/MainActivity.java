@@ -141,13 +141,29 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-            Random random = new Random();
-            choosenCeleb = random.nextInt(celebURLs.size());
+
+        } catch (InterruptedException e) {
+
+            e.printStackTrace();
+
+        } catch (ExecutionException e) {
+
+            e.printStackTrace();
+        }
+
+        createNewQuestions();
+    }
+
+    public void createNewQuestions() {
+
+        Random random = new Random();
+        choosenCeleb = random.nextInt(celebURLs.size());
 
 
-            ImageDownloader imageTask = new ImageDownloader();
-            Bitmap celebImage;
+        ImageDownloader imageTask = new ImageDownloader();
+        Bitmap celebImage;
 
+        try {
             celebImage = imageTask.execute(celebURLs.get(choosenCeleb)).get();
 
             imageView.setImageBitmap(celebImage);
@@ -179,16 +195,13 @@ public class MainActivity extends AppCompatActivity {
             button2.setText(answers[2]);
             button3.setText(answers[3]);
 
+        }
 
-
-        } catch (InterruptedException e) {
-
-            e.printStackTrace();
-
-        } catch (ExecutionException e) {
-
+        catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }
 
     public void celebChosen(View view) {
@@ -202,6 +215,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"Wrong! It was " + celebNames.get(choosenCeleb), Toast.LENGTH_LONG).show();
         }
 
+
+        createNewQuestions();
 
     }
 }
