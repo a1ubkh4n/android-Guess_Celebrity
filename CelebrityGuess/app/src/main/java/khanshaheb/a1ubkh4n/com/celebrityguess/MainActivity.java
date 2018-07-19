@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -159,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
                 if(i == locationOfCorrectAnswer) {
                     answers[i] = celebNames.get(choosenCeleb);
 
-                    Log.i("COrrect", )
 
                 } else {
 
@@ -193,7 +193,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void celebChosen(View view) {
 
-        Log.i("Button:", "Tapped");
+        if(view.getTag().toString().equals(Integer.toString(locationOfCorrectAnswer))) {
+
+            Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_LONG).show();
+        }
+
+        else {
+            Toast.makeText(getApplicationContext(),"Wrong! It was " + celebNames.get(choosenCeleb), Toast.LENGTH_LONG).show();
+        }
 
 
     }
